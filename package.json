@@ -1,21 +1,22 @@
 {
-  "name": "whatever-man",
+  "name": "syfm-api",
   "version": "0.1.0",
   "main": "build/main.js",
   "scripts": {
     "start": "node ./build/main.js",
     "dev": "backpack dev",
-    "build": "backpack build"
+    "build": "backpack build",
+    "postinstall": "backpack build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/felipet-vsouza/whatever-man.git"
+    "url": "git+https://github.com/felipet-vsouza/syfm-api.git"
   },
   "author": "felipet-vsouza",
   "bugs": {
-    "url": "https://github.com/felipet-vsouza/whatever-man/issues"
+    "url": "https://github.com/felipet-vsouza/syfm-api/issues"
   },
-  "homepage": "https://github.com/felipet-vsouza/whatever-man#readme",
+  "homepage": "https://github.com/felipet-vsouza/syfm-api#readme",
   "license": "MIT",
   "dependencies": {
     "@types/express": "^4.0.34",
