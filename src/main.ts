@@ -1,8 +1,10 @@
 import * as express from 'express';
+import * as routes from './routes';
 
 declare var __DEV__: boolean;
 
 export class Server {
+
   public app: express.Express;
   public port: number;
 
@@ -33,16 +35,11 @@ export class Server {
   private getPort = (): number => parseInt(process.env.PORT, 10) || 3000;
 
   private setRoutes = (): void => {
-    this.app.get('/', this.getHomepage);
-  }
-
-  private async getHomepage(req: express.Request, res: express.Response): Promise<express.Response> {
-    try {
-      const thing = await Promise.resolve({ one: 'two' });
-      return res.json({ ...thing, hello: 'world' });
-    } catch (e) {
-      return res.json({ error: e.message });
-    }
+    routes.buildRoutes().forEach((superroute: routes.ISuperRoute) => {
+      superroute.getRoutes().forEach((subroute: routes.ISubRoute) => {
+        this.app[subroute.method](`${superroute.superpath}${subroute.subpath}`, subroute.action);
+      });
+    });
   }
 }
 
